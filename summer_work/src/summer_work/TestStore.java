@@ -7,6 +7,7 @@ import java.util.*;
 public class TestStore {
 	
 	static Scanner in = new Scanner (System.in);
+	 Random rand = new Random(); 
 	
 	public String switchComma(String s) {
 		String s2 = "";
@@ -82,6 +83,82 @@ public class TestStore {
 			}
 		}
 	}
+	
+	
+	public void buyThird(Store st, Product [] ar) {
+		Cell c = null;
+		for(int m = 0; m<10; m++) {
+			int num = rand.nextInt(ar.length);
+			if(!(st.productLocation(ar[num]).equals(null))) {
+				st.saleProduct(ar[num], st.productCell(ar[num]).getAmountRn()/3);
+			}
+		}
+	}
+	
+	
+	
+	
+	
+	
+	public static void main(String[] args) {
+		
+		 Random rand = new Random(); 
+		 int num = rand.nextInt(6)+15;
+		 
+		 Product [] ar = new Product [num];
+		 
+		 TestStore a = new TestStore();
+		 ar = a.toArray(num);
+
+		 
+		 System.out.println(a.toString());
+		 
+		 Store s = buildStore(ar);
+		 
+		 System.out.println(s.toString());
+		 
+		 s.buyThird(s, ar);
+		 
+		 System.out.println(s.toString());
+		 
+		 System.out.println("profit: " + s.Profit());
+		 
+		 departmentNames(s.numOfProductsAtDepartment());
+		 System.out.println("products to stock: ");
+		 
+		 Product[] p = s.productsToStock();
+		 
+		 for(int z = 0; z<50; z++) {
+			 if(p[z] != null) {
+				 System.out.println(p[z].getName());
+			 }
+		 }
+		 
+		 for(int n = 0; n<num; n++) {
+			 s.fillProductStock(p[n]);
+		 }
+		 
+		 System.out.println(s.toString());
+		 
+		 String [] dep = {"Doll" ,"Puzzle" , "Creation" ,"Baby" ,"Sport"};
+		 
+		 String ans="";
+		 
+		 for (int m = 0; m<5; m++) {
+			 ans+= dep[m] + "; \n";
+			 for (int j = 0; j < num; j++) {
+				 if(ans != "")
+					 ans+=", ";
+				 if(ar[j].getDepartment() == m)
+					 ans += ar[j].getName();
+			 }
+			 ans += "\n";
+		 }
+		 switchComma(ans);
+
+	}
+	
+	
 	
 
 }

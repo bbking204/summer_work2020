@@ -16,6 +16,7 @@ public class Store {
 		Cell c = null;
 		Product p = null;
 		int[] ans = new int[2];
+		ans = null;
 		
 		for (int n = 1; n<=10; n++) {
 			for (int z=0; z<5;z++) {
@@ -34,9 +35,31 @@ public class Store {
 	}
 	
 	
-	public Cell getEmpty() {
+	
+	
+	public Cell productCell(Product product) {
+		
+		long code = product.getCode();
 		Cell c = null;
-		c.defineCell(0, 0, 0, 0, 0, 0.0, 0.0);
+		Product p = null;
+		
+		for (int n = 1; n<=10; n++) {
+			for (int z=0; z<5;z++) {
+				c = this.cells[n][z];
+				p = c.getProduct();
+				code = p.getCode();
+				if (code == product.getCode()) {
+
+					return c;
+				}
+			}
+		}
+		
+		return c;
+	}
+	
+	
+	public Cell getEmpty() {
 		Cell c2 = null;
 		
 		for (int n = 1; n<=10; n++) {
@@ -48,7 +71,7 @@ public class Store {
 			}
 		}
 			}
-		return c;
+		return null;
 	}
 	
 	
@@ -89,7 +112,7 @@ public class Store {
 	
 	
 	
-	public boolean saleProduct(Product p, int count) {
+	public boolean saleProduct(Product p, long count) {
 		
 		int[] loc = new int[2];
 		
