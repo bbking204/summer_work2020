@@ -6,22 +6,27 @@ public class Store {
 	
 	
 	public Store() {
-		this.cells = new Cell[9][4];
+		this.cells = new Cell[10][5];
+	}
+	
+	public Cell[][] getCells() {
+		return this.cells;
 	}
 	
 	
 	public int[] productLocation(Product product) {
 	
 		long code = product.getCode();
-		Cell c = null;
-		Product p = null;
+		//Cell c = null;
+		//Product p = null;
 		int[] ans = new int[2];
-		ans = null;
+		ans[0] = -1;
+		//ans = null;
 		
-		for (int n = 1; n<=10; n++) {
+		for (int n = 0; n<10; n++) {
 			for (int z=0; z<5;z++) {
-				c = this.cells[n][z];
-				p = c.getProduct();
+				Cell c = this.cells[n][z];
+				Product p = c.getProduct();
 				code = p.getCode();
 				if (code == product.getCode()) {
 					ans[0] = n;
@@ -43,7 +48,7 @@ public class Store {
 		Cell c = null;
 		Product p = null;
 		
-		for (int n = 1; n<=10; n++) {
+		for (int n = 0; n<10; n++) {
 			for (int z=0; z<5;z++) {
 				c = this.cells[n][z];
 				p = c.getProduct();
@@ -62,7 +67,7 @@ public class Store {
 	public Cell getEmpty() {
 		Cell c2 = null;
 		
-		for (int n = 1; n<=10; n++) {
+		for (int n = 0; n<10; n++) {
 			for (int z=0; z<5;z++) {
 				
 				c2 = this.cells[n][z];
@@ -142,7 +147,7 @@ public class Store {
 		Product p = null;
 		double profit = 0;
 		
-		for (int n = 1; n<=10; n++) {
+		for (int n = 0; n<10; n++) {
 			for (int z=0; z<5;z++) {
 				
 				c2 = this.cells[n][z];
@@ -168,7 +173,7 @@ public class Store {
 		Product p = null;
 		int count = 0;
 		
-		for (int n = 1; n<=10; n++) {
+		for (int n = 0; n<10; n++) {
 			for (int z=0; z<5;z++) {
 				
 				c2 = this.cells[n][z];
@@ -223,7 +228,7 @@ public class Store {
 		Cell c1 = null;
 		Product p = null;
 		
-			for (int n = 1; n<=10; n++) {
+			for (int n = 0; n<10; n++) {
 				for (int z=0; z<5;z++) {
 				
 					c1 = this.cells[n][z];
@@ -254,7 +259,7 @@ public class Store {
 		Product p = null;
 		int count = 1;
 		
-			for (int n = 1; n<=10; n++) {
+			for (int n = 0; n<10; n++) {
 				for (int z=0; z<5;z++) {
 				
 					c1 = this.cells[n][z];

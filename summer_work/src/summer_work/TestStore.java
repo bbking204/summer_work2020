@@ -29,15 +29,15 @@ public class TestStore {
 	
 	public String departmentNames(int[] amount) {
 		String [ ] dep= {"Doll" ,"Puzzle" , "Creation" ,"Baby" ,"Sport" };
-		String an = "";
+		String answer = "";
 		
 		for (int n = 0; n<=4; n++) {
-			an += dep[n];
-			an += " = " + amount[n];
-			an += "\n";
+			answer += dep[n];
+			answer += " = " + amount[n];
+			answer += "\n";
 		}
 		
-		return an;
+		return answer;
 	}
 	
 	
@@ -45,23 +45,23 @@ public class TestStore {
 	Product [] pro = new Product[n];
 	
 	for (int i = 0; i<n; i++) {
-		Product p = null;
+		
 		System.out.println("enter product code");
 		long code = in.nextLong();
-		p.setCode(code);
+//		p.setCode(code);
 		System.out.println("enter product department");
 		int department = in.nextInt();
-		p.setDepartment(department);
+//		p.setDepartment(department);
 		System.out.println("enter product name");
-		String name = in.nextLine();
-		p.setName(name);
+		String name = in.next();
+//		p.setName(name);
 		System.out.println("enter buying price of product");
 		double price = in.nextDouble();
-		p.setPriceBought(price);
+//		p.setPriceBought(price);
 		System.out.println("enter selling price of product");
 		double sell = in.nextDouble();
-		p.setSellingPrice(sell);
-		
+//		p.setSellingPrice(sell);
+		Product p = new Product(code,name,department,price,sell);
 		pro[i] = p;
 	}
 	
@@ -70,95 +70,76 @@ public class TestStore {
 	}
 	
 	
-	public void buildStore(Product[] ar) {
+	public Store buildStore(Product[] ar) {
 		Store st = new Store();
 		int n = ar.length;
-		
-		for (int i = 0; i < n; i++) {
-			int[] loc = new int[2];
-			loc = st.productLocation(ar[i]);
-			Cell c = st.getEmpty();
-			if (loc.equals(null)) {
-				c.setProduct(ar[i]);
-			}
+		int i = n;
+		int count2 = 0;
+		while(i > 0) {
+			for(int row = 0; row < 10; row++) {
+				   if(!(i>0)) {
+					   break;
+				   }
+				for(int cell = 0; cell < 5; cell++) {
+				   if(!(i>0)) {
+					   break;
+				   }
+					if(i==n) {
+					    Product p = st.getProduct(row, cell);
+					    p = ar[count2];
+					    System.out.println("current amount of product: " +  p.getName() );
+					    int amount = in.nextInt();
+					    Cell c = new Cell(p, amount);
+					    Cell[][] cells = st.getCells();
+					    cells[row][cell] = c;
+					    count2++;
+					    i--;
+					}
+					
+					else {
+					int[] loc = st.productLocation(ar[count2]);
+					if (loc[0] != -1) {
+						Product p = st.getProduct(loc[0], loc[1]);
+						Cell c = st.productCell(p);
+						System.out.println("amount of product " + p.getName() + " you wnt to add");
+						int amount = in.nextInt();
+						long amount1 = c.getAmountRn();
+						c.setAmountRn(amount1+amount);
+						count2++;
+						i--;
+					}
+					else {
+					Product p = st.getProduct(row, cell);
+				    p = ar[count2];
+				    System.out.println("current amount of product: " + p.getName());
+				    int amount = in.nextInt();
+				    Cell c = new Cell(p, amount);
+				    Cell[][] cells = st.getCells();
+				    cells[row][cell] = c;
+				    count2++;
+				    i--;
+					}
+					}
+				}
+				}
+			
+			//loc = st.productLocation(ar[i]);
+			//Cell c = st.getEmpty();
+		//	if (loc.equals(null)) {
+			//	c.setProduct(ar[i]);
 		}
+		return st;
 	}
 	
 	
-	public void buyThird(Store st, Product [] ar) {
-		Cell c = null;
+	public Store buyThird(Store st, Product [] ar) {
 		for(int m = 0; m<10; m++) {
 			int num = rand.nextInt(ar.length);
 			if(!(st.productLocation(ar[num]).equals(null))) {
 				st.saleProduct(ar[num], st.productCell(ar[num]).getAmountRn()/3);
 			}
 		}
+		return st;
 	}
-	
-	
-	
-	
-	
-	
-	public static void main(String[] args) {
-		
-		 Random rand = new Random(); 
-		 int num = rand.nextInt(6)+15;
-		 
-		 Product [] ar = new Product [num];
-		 
-		 TestStore a = new TestStore();
-		 ar = a.toArray(num);
-
-		 
-		 System.out.println(a.toString());
-		 
-		 Store s = buildStore(ar);
-		 
-		 System.out.println(s.toString());
-		 
-		 s.buyThird(s, ar);
-		 
-		 System.out.println(s.toString());
-		 
-		 System.out.println("profit: " + s.Profit());
-		 
-		 departmentNames(s.numOfProductsAtDepartment());
-		 System.out.println("products to stock: ");
-		 
-		 Product[] p = s.productsToStock();
-		 
-		 for(int z = 0; z<50; z++) {
-			 if(p[z] != null) {
-				 System.out.println(p[z].getName());
-			 }
-		 }
-		 
-		 for(int n = 0; n<num; n++) {
-			 s.fillProductStock(p[n]);
-		 }
-		 
-		 System.out.println(s.toString());
-		 
-		 String [] dep = {"Doll" ,"Puzzle" , "Creation" ,"Baby" ,"Sport"};
-		 
-		 String ans="";
-		 
-		 for (int m = 0; m<5; m++) {
-			 ans+= dep[m] + "; \n";
-			 for (int j = 0; j < num; j++) {
-				 if(ans != "")
-					 ans+=", ";
-				 if(ar[j].getDepartment() == m)
-					 ans += ar[j].getName();
-			 }
-			 ans += "\n";
-		 }
-		 switchComma(ans);
-
-	}
-	
-	
-	
 
 }
