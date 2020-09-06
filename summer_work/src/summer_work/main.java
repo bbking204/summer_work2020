@@ -4,28 +4,6 @@ import java.util.Random;
 
 public class main {
 
-//	public static void main(String[] args) {
-//		
-//		 Random rand = new Random(); 
-//		 int num = rand.nextInt(6)+15;
-//		 
-//		 Product [] ar = new Product [num];
-//		 
-//		 TestStore a = new TestStore();
-//		ar = a.toArray(num);
-//
-//		 
-//		 System.out.println(a);
-//		 
-//		 TestStore st = new TestStore();
-//		 st.buildStore(ar);
-//		 
-//		 System.out.println(st.toString());
-//		 
-//		 st.buyThird(st, ar);
-//
-//	}
-
 	public static void main(String[] args) {
 		
 		TestStore b = new TestStore();
