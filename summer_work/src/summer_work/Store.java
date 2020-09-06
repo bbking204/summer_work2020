@@ -13,7 +13,7 @@ public class Store {
 		return this.cells;
 	}
 	
-	
+	//product location
 	public int[] productLocation(Product product) {
 	
 		long code = product.getCode();
@@ -41,7 +41,7 @@ public class Store {
 	
 	
 	
-	
+	//producr cell
 	public Cell productCell(Product product) {
 		
 		long code = product.getCode();
@@ -63,7 +63,7 @@ public class Store {
 		return c;
 	}
 	
-	
+	//get empty
 	public Cell getEmpty() {
 		Cell c2 = null;
 		
@@ -79,7 +79,7 @@ public class Store {
 		return null;
 	}
 	
-	
+	//get product
 	public Product getProduct (int L, int C) {
 		Cell c = null;
 		Product p = null;
@@ -95,7 +95,7 @@ public class Store {
 		return p;
 	}
 	
-	
+	//fill products
 	public void fillProductStock(Product p) {
 		int[] loc = new int[2];
 		
@@ -116,7 +116,7 @@ public class Store {
 	}
 	
 	
-	
+	//sale product
 	public boolean saleProduct(Product p, long count) {
 		
 		int[] loc = new int[2];
@@ -139,7 +139,7 @@ public class Store {
 		
 	}
 	
-	
+	//profit
 	public double Profit() {
 		
 		Cell c = null;
@@ -165,7 +165,7 @@ public class Store {
 	}
 	
 	
-	
+	//to stock
 	public Product [ ] productsToStock() {
 		Product[] prod = new Product [50];
 		Cell c = null;
@@ -192,7 +192,7 @@ public class Store {
 		return prod;
 	}
 	
-	
+	//number of products at departments 
 	public int [ ] numOfProductsAtDepartment() {
 		int[] dep = new int [4];
 		Cell c1 = null;
@@ -221,7 +221,7 @@ public class Store {
 		return dep;
 	}
 	
-	
+	//names
 	public String productsNames(int dep) {
 		
 		String names = "";
@@ -251,7 +251,7 @@ public class Store {
 	}
 	
 	
-	
+	//to string
 	public String toString() {
 		
 		String def = "";
