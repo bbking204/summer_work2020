@@ -48,19 +48,14 @@ public class TestStore {
 		
 		System.out.println("enter product code");
 		long code = in.nextLong();
-//		p.setCode(code);
 		System.out.println("enter product department");
 		int department = in.nextInt();
-//		p.setDepartment(department);
 		System.out.println("enter product name");
 		String name = in.next();
-//		p.setName(name);
 		System.out.println("enter buying price of product");
 		double price = in.nextDouble();
-//		p.setPriceBought(price);
 		System.out.println("enter selling price of product");
 		double sell = in.nextDouble();
-//		p.setSellingPrice(sell);
 		Product p = new Product(code,name,department,price,sell);
 		pro[i] = p;
 	}
@@ -123,10 +118,6 @@ public class TestStore {
 				}
 				}
 			
-			//loc = st.productLocation(ar[i]);
-			//Cell c = st.getEmpty();
-		//	if (loc.equals(null)) {
-			//	c.setProduct(ar[i]);
 		}
 		return st;
 	}
